@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="d-flex justify-content-center mt-3 my-3" style="height: 35px;">
+    <select class="form-select form" style="width: 8rem;">
+        <option selected>선택</option>
+        <option value="1">작성자</option>
+        <option value="1">게시글</option>
+    </select>
+    <form class="d-flex" role="search" action=" {% url 'articles:search' %}">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+          name="search">
+      <button class="btn btn-outline-dark" type="submit">Search</button>
+    </form>
+</div>
+<div>
+  <h2 class="m-3">검색 결과</h2>
+  {% if search.count == 0 %}
+  <h2 class="m-3">검색 결과가 없습니다.</h2>
+  {% endif %}
+</div>
+<hr>
+
+
+{% endblock content %}
