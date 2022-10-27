@@ -116,3 +116,5 @@ def delete(request):
     auth_logout(request)
     return redirect('accounts:index')
 
+def home(request):
+    return render(request, 'accounts/home.html')
