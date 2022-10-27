@@ -29,7 +29,7 @@
             <ul class="nav">
                 {% if request.user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="px-2" href="{% url 'accounts:detail' user.pk %}">{{ user }}님 환영합니다 \(￣︶￣* \))</a>
+                        <a class="px-2 text-decoration-none text-white" href="{% url 'accounts:detail' user.pk %}">{{ user }}님 환영합니다 \(￣︶￣* \))</a>
                     </li>
                     <li class="nav-item">
                         <a href="{% url 'accounts:logout' %}" class="btn btn-dark px-2">로그아웃</a>
