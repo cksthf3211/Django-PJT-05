@@ -12,7 +12,7 @@ def index(request):
     context = {
         'articles': articles
     }
-    return render(request, 'articles/index.html')
+    return render(request, 'articles/index.html', context)
 
 @login_required
 def create(request):
@@ -100,3 +100,15 @@ def comment_delete(request, pk, comment_pk):
     else:
         messages.warning(request, '본인의 댓글만 삭제할 수 있습니다.')
         return redirect('articles:detail', pk)
+    
+def search(request):
+    search = request.GET.get("search")
+    select = request.GET.get('select')
+    if select == 2:
+        articles = Review.objects.filter(title__icontains=search)
+    else:
+        articles = Review.objects.filter(user__username__icontains=search)
+    context = {
+        "articles" : articles,
+    }
+    return render(request, 'articles/search.html', context)

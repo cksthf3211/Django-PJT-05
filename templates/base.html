@@ -23,30 +23,26 @@
               <li class="nav-item">
                 <a class="nav-link text-light" href="{% url 'articles:index' %}">게시글목록</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link text-light" href="{% url 'articles:index' %}">게시글작성</a>
-              </li>
             </ul>
+          </div>
+          <div class="mx-5">
             <ul class="nav">
-                <li class="nav-item">
-                    <a href="{% url 'articles:index' %}" class="btn btn-outline-dark px-2">리뷰 목록</button></a>
-                </li>
                 {% if request.user.is_authenticated %}
                     <li class="nav-item">
                         <a class="px-2" href="{% url 'accounts:detail' user.pk %}">{{ user }}님 환영합니다 \(￣︶￣* \))</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{% url 'accounts:logout' %}" class="btn btn-outline-dark px-2">로그아웃</a>
+                        <a href="{% url 'accounts:logout' %}" class="btn btn-dark px-2">로그아웃</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{% url 'articles:create' %}" class="btn btn-outline-dark px-2">리뷰 작성하기</a>
+                        <a href="{% url 'articles:create' %}" class="btn btn-dark px-2">리뷰 작성하기</a>
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a href="{% url 'accounts:login' %}" class="btn btn-outline-dark px-2">로그인</a>
+                        <a href="{% url 'accounts:login' %}" class="btn btn-dark px-2">로그인</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{% url 'accounts:signup' %}" class="btn btn-outline-dark px-2">회원가입</a>
+                        <a href="{% url 'accounts:signup' %}" class="btn btn-dark px-2">회원가입</a>
                     </li>
                 {% endif %}
             </ul>

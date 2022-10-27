@@ -10,7 +10,6 @@ from .forms import CustomUserChangeForm, CustomUserCreationForm
 def home(request):
     return render(request, 'accounts/home.html')
 
-    
 def index(request):
     users = get_user_model().objects.order_by('-pk')
     context = {
