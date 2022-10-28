@@ -7,7 +7,7 @@
             <h1>{{ article.title }}</h1>
         </div>
         <p>{{ article.pk }}번 게시글 | 작성자:<a href="{% url 'accounts:detail' article.user.pk %}">{{ article.user.username }}</a></p>
-        <p>{{ article.created_at|date:"SHORT_DATETIME_FORMAT" }} | {{ article.updated_at|date:"y-m-d D" }}</p>
+        <p>글 작성:{{ article.created_at|date:"SHORT_DATETIME_FORMAT" }} | 최종수정:{{ article.updated_at|date:"y-m-d D" }}</p>
         <div class="my-3">
           {% if request.user.is_authenticated %}
           {% if request.user in article.like_users.all %}
