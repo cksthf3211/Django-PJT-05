@@ -6,7 +6,7 @@
         {% csrf_token%}
         {% bootstrap_form form %}
         <button class="btn btn-primary" type="submit">OK</button>
-        <a href="{% url 'articles:index' %}">Cancel</a>
+        <a href="{% url 'articles:index' %}" class="btn btn-secondary">Cancel</a>
     </form>
 </div>
 {% endblock content %}
