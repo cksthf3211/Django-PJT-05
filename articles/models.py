@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 from imagekit.models import ProcessedImageField
-from imagekit.processors import ResizeToFill, ResizeToCover
+from imagekit.processors import ResizeToFill, ResizeToFit
 from imagekit.processors import Thumbnail
 from django.core.validators import MinValueValidator, MaxValueValidator
 # Create your models here.
