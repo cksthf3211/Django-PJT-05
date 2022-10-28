@@ -6,9 +6,12 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">PK</th>
+          <th scope="col">회원번호</th>
+          <th scope="col">ID</th>
           <th scope="col">이름</th>
           <th scope="col">이메일</th>
+          <th scope="col">Following</th>
+          <th scope="col">Follower</th>
         </tr>
       </thead>
       <tbody>
@@ -18,7 +21,10 @@
             <td class="align-middle">
               <a href="{% url 'accounts:detail' user.pk %}" class="text-decoration-none">{{ user.username }}</a>
             </td>
+            <td class="align-middle">{{ user.full_name }}</td>
             <td class="align-middle">{{ user.email }}</td>
+            <td class="align-middle">{{ user.followings.count }}</td>
+            <td class="align-middle">{{ user.followers.count }}</td>
           </tr>
         {% endfor %}
       </tbody>
