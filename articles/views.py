@@ -62,8 +62,8 @@ def update(request, pk):
 
 @login_required
 def delete(request, pk):
+    article = get_object_or_404(Review, pk=pk)
     if request.user == article.user:
-        article = get_object_or_404(Review, pk=pk)
         article.delete()
         return redirect('articles:index')
     else:
