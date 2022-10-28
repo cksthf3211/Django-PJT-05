@@ -110,7 +110,7 @@ def comment_delete(request, pk, comment_pk):
 def search(request):
     search = request.GET.get("search")
     select = request.GET.get('select')
-    if select == 2:
+    if select == '2':
         articles = Review.objects.filter(title__icontains=search)
     else:
         articles = Review.objects.filter(user__username__icontains=search)
