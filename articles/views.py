@@ -32,8 +32,12 @@ def create(request):
 
 def detail(request, pk):
     article = get_object_or_404(Review, pk=pk)
+    comments = Comment.objects.filter(article=article)
+    form = CommentForm()
     context = {
-        'article':article
+        'article':article,
+        'comment_form': form,
+        'comments':comments
     }
     return render(request, 'articles/detail.html', context)
 
