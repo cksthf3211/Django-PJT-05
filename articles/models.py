@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 from imagekit.models import ProcessedImageField
-from imagekit.processors import ResizeToFill
+from imagekit.processors import ResizeToFill, ResizeToFit
 from imagekit.processors import Thumbnail
 from django.core.validators import MinValueValidator, MaxValueValidator
 # Create your models here.
@@ -23,7 +23,7 @@ class Review(models.Model):
                                 options={'quality': 80})
     thumbnail = ProcessedImageField(blank=True,
                                     upload_to="thumbnail/",
-                                    processors=[Thumbnail(300, 200)],
+                                    processors=[ResizeToFill(300, 200)],
                                     format="JPEG",
                                     options={"quality": 60},
                                     )
