@@ -24,10 +24,14 @@
 </div>
 
 <div class="container">
+  <div class="row row-cols-4">
     {% for article in articles %}
-    <div class="card" style="width: 18rem;">
+    <div class="col my-3">
+    <div class="card">
         {% if article.thumbnail %}
         <img src="{{ article.thumbnail.url }}" class="card-img-top" alt="thumbnail">
+        {% else %}
+        <img src="https://dummyimage.com/300x200/000/fff" class="card-img-top" alt="thumbnail">
         {% endif %}
         <div class="card-body">
           <h5 class="card-title">제목: {{ article.title }}</h5>
@@ -63,7 +67,10 @@
           <a href="{% url 'articles:detail' article.pk %}" class="btn btn-dark">자세히</a>
         </div>
       </div>
+    </div>
     {% endfor %}
+  
+</div>
 </div>
 
 {% endblock content %}

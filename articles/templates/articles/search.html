@@ -56,7 +56,7 @@
         </p>
           <p class="card-text">좋아요 수:{{article.like_users.count }}</p>
           <p class="card-text">댓글 수:{{article.comment_set.count }}</p>
-          <a href="{% url 'article:detail' article.pk %}" class="btn btn-dark">자세히</a>
+          <a href="{% url 'articles:detail' article.pk %}" class="btn btn-dark">자세히</a>
         </div>
       </div>
     {% endfor %}
