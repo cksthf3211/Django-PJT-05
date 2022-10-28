@@ -106,7 +106,7 @@ def comment_delete(request, pk, comment_pk):
     else:
         messages.warning(request, '본인의 댓글만 삭제할 수 있습니다.')
         return redirect('articles:detail', pk)
-    
+
 def search(request):
     search = request.GET.get("search")
     select = request.GET.get('select')
