@@ -6,27 +6,34 @@
         <div class="card-title">
             <h1>{{ article.title }}</h1>
         </div>
-        <p>{{ article.pk }}번 게시글 | <a href="{% url 'accounts:detail' article.user.pk %}">{{ article.user.username }}</a></p>
+        <p>{{ article.pk }}번 게시글 | 작성자:<a href="{% url 'accounts:detail' article.user.pk %}">{{ article.user.username }}</a></p>
         <p>{{ article.created_at|date:"SHORT_DATETIME_FORMAT" }} | {{ article.updated_at|date:"y-m-d D" }}</p>
-        {% if request.user.is_authenticated %}
-        {% if request.user in article.like_users.all %}
-            <i id="like-btn" data-article-id="{{ article.pk }}" class="bi bi-heart-fill"></i>
-        {% else %}
-            <i id="like-btn" data-article-id="{{ article.pk }}" class="bi bi-heart"></i>
-        {% endif %}
-        {% endif %}
-        <span id="like-count">{{ article.like_users.count }}</span>
+        <div class="my-3">
+          {% if request.user.is_authenticated %}
+          {% if request.user in article.like_users.all %}
+              <i id="like-btn" data-article-id="{{ article.pk }}" class="bi bi-heart-fill"></i>
+          {% else %}
+              <i id="like-btn" data-article-id="{{ article.pk }}" class="bi bi-heart"></i>
+          {% endif %}
+          {% endif %}
+          <span id="like-count">{{ article.like_users.count }}</span>
+        </div>
 
         {% if request.user == article.user %}
         <p>
-        <a href="{% url 'articles:update' article.pk %}">수정하기</a>
+        <a class='btn btn-outline-dark' href="{% url 'articles:update' article.pk %}">수정하기</a>
         </p>
         {% endif %}
         <hr>
-        <p>{{ article.content }} </p>
-        {% if article.image %}
-         <img src="{{ article.image.url }}" class="card-top-img" alt="{{ article.image }}" style="width:500px; height:400px;">
-        {% endif %}
+        <div>
+          <h2><b>CONTENT</b></h2>
+          <p>{{ article.content }} </p>
+          <p class="text-center">
+            {% if article.image %}
+            <img src="{{ article.image.url }}" class="card-top-img" alt="{{ article.image }}" style="width:500px; height:400px;">
+           {% endif %}
+          </p>
+        </div>
     </div>
     <hr>
     <h4 class="my-3">댓글</h4>
@@ -40,7 +47,13 @@
     <hr>
     <div id="comments">
         {% for comment in comments %}
-        <p> {{ comment.user.username }} | {{ comment.content }}</p>
+        <div class="d-flex justify-content-between">
+          <p>{{ forloop.counter }}. 작성:{{ comment.user.username }} | {{ comment.content }}</p>
+          <p>{{ article.created_at|date:"SHORT_DATETIME_FORMAT" }}</p>
+        </div>
+        {% if request.user.pk == article.user.pk %}
+        <p class="text-end"><a class="btn btn-outline-danger" href="{% url 'articles:comment_delete' article.pk comment.pk %}">댓글삭제</a></p>
+        {% endif %}
         <hr>    
         {% empty %}
         <p>댓글이 없어요 ㅠ_ㅠ</p>
